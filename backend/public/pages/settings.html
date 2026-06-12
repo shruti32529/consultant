@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Settings - Consultation Manager</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .settings-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .settings-section {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .settings-section h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #182230;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .setting-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .setting-label {
+            flex: 1;
+        }
+
+        .setting-label label {
+            display: block;
+            font-weight: 600;
+            color: #182230;
+            margin-bottom: 4px;
+        }
+
+        .setting-label p {
+            font-size: 13px;
+            color: #64748b;
+            margin: 0;
+        }
+
+        .setting-control {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 28px;
+            background: #cbd5e1;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: #10b981;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: left 0.3s;
+        }
+
+        .toggle-switch.active::after {
+            left: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 200px;
+            padding: 8px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn-save {
+            padding: 10px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: 0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .btn-cancel {
+            padding: 10px 24px;
+            background: #e5e7eb;
+            color: #182230;
+            border: 0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-cancel:hover {
+            background: #d1d5db;
+        }
+
+        .alert {
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .alert.success {
+            background: #d1fae5;
+            color: #065f46;
+            display: block;
+        }
+
+        .profile-section {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .profile-info h4 {
+            margin: 0 0 4px 0;
+        }
+
+        .profile-info p {
+            margin: 0;
+            color: #64748b;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <aside class="sidebar">
+        <div>
+            <h2>Consultations</h2>
+        </div>
+
+        <a class="nav-link" href="dashboard.html">Dashboard</a>
+        <a class="nav-link" href="add-consultation.html">Add Consultation</a>
+        <a class="nav-link" href="analytics.html">Analytics</a>
+        <a class="nav-link active" href="settings.html">Settings</a>
+
+        <button class="secondary-button" onclick="logout()">Logout</button>
+    </aside>
+
+    <main class="main-panel">
+        <section class="page-header">
+            <div>
+                <h1>⚙️ Settings</h1>
+                <p>Manage your account preferences and application settings</p>
+            </div>
+        </section>
+
+        <div class="settings-container">
+            <div id="successAlert" class="alert success">✓ Settings saved successfully!</div>
+
+            <!-- Profile Section -->
+            <div class="settings-section">
+                <h3>👤 Profile Information</h3>
+                <div class="profile-section">
+                    <div class="avatar" id="userAvatar">U</div>
+                    <div class="profile-info">
+                        <h4 id="userName">User Name</h4>
+                        <p id="userEmail">user@example.com</p>
+                        <p><small>Member since <span id="joinDate">--</span></small></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notification Settings -->
+            <div class="settings-section">
+                <h3>🔔 Notifications</h3>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <label>Follow-up Reminders</label>
+                        <p>Get notified about upcoming follow-ups</p>
+                    </div>
+                    <div class="setting-control">
+                        <div class="toggle-switch active" onclick="toggleSetting(this)"></div>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <label>Daily Summary</label>
+                        <p>Receive a daily summary of your consultations</p>
+                    </div>
+                    <div class="setting-control">
+                        <div class="toggle-switch" onclick="toggleSetting(this)"></div>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <label>Payment Reminders</label>
+                        <p>Get reminded about unpaid consultations</p>
+                    </div>
+                    <div class="setting-control">
+                        <div class="toggle-switch active" onclick="toggleSetting(this)"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appearance Settings -->
+            <div class="settings-section">
+                <h3>🎨 Appearance</h3>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <label>Theme</label>
+                        <p>Choose your preferred theme</p>
+                    </div>
+                    <div class="setting-control form-group">
+                        <select id="themeSelect">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                            <option value="auto">Auto</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <label>Date Format</label>
+                        <p>How dates are displayed</p>
+                    </div>
+                    <div class="setting-control form-group">
+                        <select id="dateFormatSelect">
+                            <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                            <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                            <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data & Privacy -->
+            <div class="settings-section">
+                <h3>🔒 Data & Privacy</h3>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <label>Auto-save Notes</label>
+                        <p>Automatically save your consultation notes</p>
+                    </div>
+                    <div class="setting-control">
+                        <div class="toggle-switch active" onclick="toggleSetting(this)"></div>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <label>Data Backup</label>
+                        <p>Enable automatic daily backups</p>
+                    </div>
+                    <div class="setting-control">
+                        <div class="toggle-switch" onclick="toggleSetting(this)"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Management -->
+            <div class="settings-section">
+                <h3>👥 Account</h3>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <label>Change Password</label>
+                        <p>Update your account password</p>
+                    </div>
+                    <div class="setting-control">
+                        <button class="btn-cancel" onclick="alert('Change password feature coming soon')">Change</button>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <label>Export My Data</label>
+                        <p>Download all your data as JSON</p>
+                    </div>
+                    <div class="setting-control">
+                        <button class="btn-cancel" onclick="exportMyData()">Export</button>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <label>Delete Account</label>
+                        <p>Permanently delete your account and data</p>
+                    </div>
+                    <div class="setting-control">
+                        <button class="btn-cancel" style="background: #fee2e2; color: #991b1b;" onclick="if(confirm('Are you sure? This cannot be undone.')) deleteAccount()">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-save" onclick="saveSettings()">💾 Save Settings</button>
+                <button class="btn-cancel" onclick="window.location.href='dashboard.html'">Cancel</button>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="../js/settings.js"></script>
+
+</body>
+</html>

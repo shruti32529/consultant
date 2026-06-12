@@ -1,0 +1,4 @@
+◇ injected env (7) from .env // tip: ⌘ override existing { override: true }
+MySQL Connected
+Tables Created
+Server running on port 5000
