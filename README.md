@@ -15,6 +15,18 @@ This project was built as part of a software engineering challenge to demonstrat
 * Engineering decisions under limited time constraints
 
 ---
+Register Page
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3d2074c9-bc34-4c91-9b1c-35c1bfad6ba7" />
+
+
+Login Page
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a31f26a4-cd81-45b4-a51e-cad74d4ac636" />
+
+Dashboard
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a72aaa6b-f2fe-41c7-8011-94c4464a0d98" />
+
+Add Consulation
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/94b19358-5ba8-40d0-85c4-fcbc09878965" />
 
 ## Features
 
