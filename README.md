@@ -128,9 +128,9 @@ MYSQL_HOST=localhost
 MYSQL_PORT=3306
 MYSQL_USER=root
 MYSQL_PASSWORD=your_password
-MYSQL_DATABASE=bcde
+MYSQL_DATABASE=database
 
-JWT_SECRET=12345678
+JWT_SECRET=pasword
 ```
 
 ### 4. Start Server
