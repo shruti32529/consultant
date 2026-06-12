@@ -1,4 +1,4 @@
-# Consultation Recording Manager
+# Consultation  Manager
 
 A candidate challenge solution for managing consultation recording metadata and notes.
 
